@@ -258,11 +258,11 @@ capsule.addEventListener("click", () => {
     gachaPreview.src = `cards/${selectedCard.file}`;
     gachaPreview.classList.remove("hidden");
     gachaStageText.textContent = "でた！！";
-  }, 1000);
+  }, 1500);
 
   setTimeout(() => {
     showResult();
-  }, 1750);
+  }, 2300);
 });
 
 stampOptions.forEach(button => {

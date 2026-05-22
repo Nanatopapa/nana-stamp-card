@@ -397,3 +397,68 @@ button:active {
   80% { transform: scale(1.08); opacity: 1; }
   100% { transform: scale(1); }
 }
+
+/* スマホでタイトルと右上カウンターがかぶらないように */
+@media (max-width: 480px) {
+  .stats-box {
+    position: static;
+    display: inline-block;
+    margin: 0 auto 18px auto;
+  }
+
+  h1 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    padding-right: 0;
+  }
+}
+
+/* 古いスマホでスタンプ枠が潰れないように */
+.stamp-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.stamp-cell {
+  aspect-ratio: auto;
+  height: 56px;
+  min-height: 56px;
+  border-radius: 18px;
+  font-size: 34px;
+  line-height: 1;
+}
+
+/* 光を強める */
+.flash {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,1) 0%,
+    rgba(255,245,120,1) 28%,
+    rgba(255,180,0,0.95) 55%,
+    rgba(255,100,0,0.75) 75%,
+    rgba(255,100,0,0) 100%
+  );
+  z-index: 9999;
+  animation: flashPop 1.6s ease-out forwards;
+}
+
+@keyframes flashPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
+
