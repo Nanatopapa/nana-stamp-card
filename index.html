@@ -26,8 +26,8 @@
 
     <div class="menu">
       <button id="goStamp">スタンプ</button>
-      <button id="goGacha">ガチャ</button>
-      <button id="goCollection">コレクション</button>
+      <button id="goGachaSelect">ガチャ</button>
+      <button id="goCollectionSelect">コレクション</button>
     </div>
   </div>
 
@@ -47,11 +47,22 @@
     <button id="backHomeFromStamp" class="back-button">もどる</button>
   </div>
 
+  <div id="gachaSelectScreen" class="app hidden">
+    <h1>ガチャを<br>えらぶ</h1>
+
+    <div class="select-menu">
+      <button class="select-button train" data-gacha="train">🚄<span>しんかんせん</span></button>
+      <button class="select-button dino" data-gacha="dino">🦖<span>きょうりゅう</span></button>
+    </div>
+
+    <button id="backHomeFromGachaSelect" class="back-button">もどる</button>
+  </div>
+
   <div id="gachaScreen" class="app hidden">
-    <h1>しんかんせん<br>ガチャ</h1>
+    <h1 id="gachaTitle">しんかんせん<br>ガチャ</h1>
 
     <div class="gacha-machine">
-      <img src="gacha-window_train.webp" alt="しんかんせんガチャ">
+      <img id="gachaWindowImage" src="gacha-window_train.webp" alt="ガチャ">
     </div>
 
     <div id="gachaProgress" class="progress-box">
@@ -64,7 +75,7 @@
     </div>
 
     <button id="drawGacha" class="main-action">ガチャをまわす！</button>
-    <button id="backHomeFromGacha" class="back-button">もどる</button>
+    <button id="backGachaSelectFromGacha" class="back-button">ガチャをえらぶ</button>
   </div>
 
   <div id="gachaAnimationScreen" class="app hidden">
@@ -78,7 +89,7 @@
 
       <div id="flash" class="flash hidden"></div>
 
-      <img id="gachaPreview" class="gacha-preview hidden" src="cards/e5.webp" alt="カード">
+      <img id="gachaPreview" class="gacha-preview hidden" src="" alt="カード">
     </div>
   </div>
 
@@ -93,8 +104,19 @@
     <button id="goCollectionFromResult" class="back-button">コレクションへ</button>
   </div>
 
+  <div id="collectionSelectScreen" class="app hidden">
+    <h1>コレクションを<br>えらぶ</h1>
+
+    <div class="select-menu">
+      <button class="select-button train" data-collection="train">🚄<span>しんかんせん</span></button>
+      <button class="select-button dino" data-collection="dino">🦖<span>きょうりゅう</span></button>
+    </div>
+
+    <button id="backHomeFromCollectionSelect" class="back-button">もどる</button>
+  </div>
+
   <div id="collectionScreen" class="app hidden">
-    <h1>コレクション</h1>
+    <h1 id="collectionTitle">コレクション</h1>
 
     <div id="collectionProgress" class="progress-box">
       いまは 0 / 14<br>
@@ -103,7 +125,7 @@
 
     <div id="collectionGrid" class="collection-grid"></div>
 
-    <button id="backHomeFromCollection" class="back-button">もどる</button>
+    <button id="backCollectionSelectFromCollection" class="back-button">コレクションをえらぶ</button>
   </div>
 
   <div id="messagePopup" class="message-popup hidden">
