@@ -107,8 +107,8 @@ button:active {
 }
 
 #goStamp { background: #ff6b6b; }
-#goGacha { background: #4ecdc4; }
-#goCollection { background: #6c5ce7; }
+#goGachaSelect { background: #4ecdc4; }
+#goCollectionSelect { background: #6c5ce7; }
 
 .main-action {
   width: 100%;
