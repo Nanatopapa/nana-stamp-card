@@ -177,7 +177,7 @@ function chooseCard() {
     return secretCard;
   }
 
-  if (roll < 0.80 && unownedNormalCards.length > 0) {
+  if (roll < 0.75 && unownedNormalCards.length > 0) {
     return unownedNormalCards[Math.floor(Math.random() * unownedNormalCards.length)];
   }
 
