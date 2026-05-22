@@ -8,7 +8,7 @@ const cards = [
   { name: "E5はやぶさ", file: "e5.png" },
   { name: "E6こまち", file: "e6.png" },
   { name: "E7かがやき", file: "e7.png" },
-  { name: "H5はやぶさ", file: "h5.png" },
+  { name: "H5はやぶさ", file: "h5.PNG" },
   { name: "ドクターイエロー", file: "doctor.png" },
   { name: "ひかりレールスター", file: "railstar.png" },
   { name: "N700Sのぞみ", file: "n700s.png" },
@@ -16,7 +16,7 @@ const cards = [
   { name: "800系つばめ", file: "tsubame800.png" },
   { name: "N700Sかもめ", file: "kamome.png" },
   { name: "ALFA-X", file: "alfax.png" },
-  { name: "500こだま", file: "500kodama.png" },
+  { name: "500こだま", file: "500kodama.PNG" },
   { name: "E3つばさ", file: "e3tsubasa.png" }
 ];
 
