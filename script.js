@@ -262,7 +262,7 @@ capsule.addEventListener("click", () => {
 
   setTimeout(() => {
     showResult();
-  }, 2300);
+  }, 3500);
 });
 
 stampOptions.forEach(button => {
