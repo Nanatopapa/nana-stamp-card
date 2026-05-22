@@ -429,29 +429,38 @@ button:active {
 
 /* 光を強める */
 .flash {
-  position: absolute;
-  inset: -40px;
-  background: rgba(255, 220, 80, 0.85);
-  border-radius: 28px;
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,1) 0%,
+    rgba(255,245,120,1) 28%,
+    rgba(255,180,0,0.95) 55%,
+    rgba(255,100,0,0.75) 75%,
+    rgba(255,100,0,0) 100%
+  );
   z-index: 9999;
-  animation: flashPop 1.2s ease-out forwards;
+  animation: flashPop 1.6s ease-out forwards;
 }
 
 @keyframes flashPop {
   0% {
     opacity: 0;
+    transform: scale(0.3);
   }
 
   20% {
     opacity: 1;
+    transform: scale(1);
   }
 
-  70% {
+  65% {
     opacity: 1;
+    transform: scale(1.15);
   }
 
   100% {
     opacity: 0;
+    transform: scale(1.4);
   }
 }
-
