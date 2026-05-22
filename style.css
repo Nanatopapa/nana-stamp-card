@@ -506,3 +506,12 @@ button:active {
   transform: scale(0.96);
 }
 
+#goGachaSelect {
+  background: #4ecdc4 !important;
+}
+
+#goCollectionSelect {
+  background: #6c5ce7 !important;
+}
+
+
