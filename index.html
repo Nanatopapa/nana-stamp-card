@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ななとのスタンプカード</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="homeScreen" class="app">
+    <h1>ななとの<br>スタンプカード</h1>
+
+    <div class="stats-box">
+      <div>⭐ <span id="totalStamps">0</span></div>
+      <div>🎟️ <span id="totalTickets">0</span></div>
+    </div>
+
+    <div class="card-area">
+      <div id="stampGrid" class="stamp-grid"></div>
+    </div>
+
+    <div class="ticket-box">
+      🎟️ ガチャけん <span id="ticketCount">0</span>まい
+    </div>
+
+    <div class="menu">
+      <button id="goStamp">スタンプ</button>
+      <button id="goGacha">ガチャ</button>
+      <button id="goCollection">コレクション</button>
+    </div>
+  </div>
+
+  <div id="stampScreen" class="app hidden">
+    <h1>スタンプを<br>えらぶ</h1>
+
+    <div class="stamp-menu">
+      <button class="stamp-option red" data-emoji="🧹">🧹<span>おかたづけ</span></button>
+      <button class="stamp-option blue" data-emoji="🪥">🪥<span>はみがき</span></button>
+      <button class="stamp-option green" data-emoji="👕">👕<span>おきがえ</span></button>
+      <button class="stamp-option orange" data-emoji="🥦">🥦<span>おやさい</span></button>
+      <button class="stamp-option purple" data-emoji="💩">💩<span>うんち</span></button>
+      <button class="stamp-option pink" data-emoji="💝">💝<span>おてつだい</span></button>
+      <button class="stamp-option yellow" data-emoji="⭐">⭐<span>とくべつ</span></button>
+    </div>
+
+    <button id="backHomeFromStamp" class="back-button">もどる</button>
+  </div>
+
+  <div id="gachaScreen" class="app hidden">
+    <h1>しんかんせん<br>ガチャ</h1>
+
+    <div class="gacha-machine">
+      <img src="gacha-window_train.png" alt="しんかんせんガチャ">
+    </div>
+
+    <div id="gachaProgress" class="progress-box">
+      🚄 コレクション 0 / 14<br>
+      あと14しゅるい！
+    </div>
+
+    <div class="ticket-box">
+      🎟️ ガチャけん <span id="ticketCountGacha">0</span>まい
+    </div>
+
+    <button id="drawGacha" class="main-action">ガチャをまわす！</button>
+    <button id="backHomeFromGacha" class="back-button">もどる</button>
+  </div>
+
+  <div id="gachaAnimationScreen" class="app hidden">
+    <h1 id="gachaStageText">ガラガラ...</h1>
+
+    <div class="capsule-area">
+      <div id="capsule" class="capsule">
+        <div class="capsule-half capsule-top"></div>
+        <div class="capsule-half capsule-bottom"></div>
+      </div>
+
+      <div id="flash" class="flash hidden"></div>
+
+      <img id="gachaPreview" class="gacha-preview hidden" src="cards/e5.png" alt="カード">
+    </div>
+  </div>
+
+  <div id="resultScreen" class="app hidden">
+    <h1 id="resultTitle">ゲット！</h1>
+
+    <div class="result-card-wrap">
+      <img id="resultCard" src="" alt="ゲットしたカード">
+    </div>
+
+    <button id="backGachaFromResult" class="main-action">もういちど</button>
+    <button id="goCollectionFromResult" class="back-button">コレクションへ</button>
+  </div>
+
+  <div id="collectionScreen" class="app hidden">
+    <h1>コレクション</h1>
+
+    <div id="collectionProgress" class="progress-box">
+      いまは 0 / 14<br>
+      あと14しゅるい！
+    </div>
+
+    <div id="collectionGrid" class="collection-grid"></div>
+
+    <button id="backHomeFromCollection" class="back-button">もどる</button>
+  </div>
+
+  <div id="messagePopup" class="message-popup hidden">
+    <div id="messageText" class="message-text">ゲット！</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
