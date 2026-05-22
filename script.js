@@ -5,24 +5,24 @@ let totalStamps = Number(localStorage.getItem("totalStamps")) || 0;
 let totalTickets = Number(localStorage.getItem("totalTickets")) || 0;
 
 const cards = [
-  { name: "E5はやぶさ", file: "e5.png" },
-  { name: "E6こまち", file: "e6.png" },
-  { name: "E7かがやき", file: "e7.png" },
-  { name: "H5はやぶさ", file: "h5.PNG" },
-  { name: "ドクターイエロー", file: "doctor.png" },
-  { name: "ひかりレールスター", file: "railstar.png" },
-  { name: "N700Sのぞみ", file: "n700s.png" },
-  { name: "0系ひかり", file: "zero.png" },
-  { name: "800系つばめ", file: "tsubame800.png" },
-  { name: "N700Sかもめ", file: "kamome.png" },
-  { name: "ALFA-X", file: "alfax.png" },
-  { name: "500こだま", file: "500kodama.PNG" },
-  { name: "E3つばさ", file: "e3tsubasa.png" }
+  { name: "E5はやぶさ", file: "e5.webp" },
+  { name: "E6こまち", file: "e6.webp" },
+  { name: "E7かがやき", file: "e7.webp" },
+  { name: "H5はやぶさ", file: "H5.webp" },
+  { name: "ドクターイエロー", file: "doctor.webp" },
+  { name: "ひかりレールスター", file: "railstar.webp" },
+  { name: "N700Sのぞみ", file: "n700s.webp" },
+  { name: "0系ひかり", file: "zero.webp" },
+  { name: "800系つばめ", file: "tsubame800.webp" },
+  { name: "N700Sかもめ", file: "kamome.webp" },
+  { name: "ALFA-X", file: "alfax.webp" },
+  { name: "500こだま", file: "500kodama.webp" },
+  { name: "E3つばさ", file: "e3tsubasa.webp" }
 ];
 
 const secretCard = {
   name: "ブラックシンカリオン",
-  file: "black.png"
+  file: "black.webp"
 };
 
 const homeScreen = document.getElementById("homeScreen");
@@ -133,7 +133,6 @@ function updateProgress() {
 
 function updateCollection() {
   collectionGrid.innerHTML = "";
-
   const allCards = [...cards, secretCard];
 
   allCards.forEach(card => {
@@ -153,7 +152,7 @@ function updateCollection() {
     } else {
       const locked = document.createElement("div");
       locked.classList.add("locked-card");
-      locked.textContent = card.file === "black.png" ? "SECRET" : "？？？";
+      locked.textContent = card.file === "black.webp" ? "SECRET" : "？？？";
       item.appendChild(locked);
     }
 
@@ -164,24 +163,16 @@ function updateCollection() {
 }
 
 function chooseCard() {
-  const normalCards = cards;
-  const allCards = [...cards, secretCard];
-
-  const unownedNormalCards = normalCards.filter(card => {
-    return !collection.includes(card.file);
-  });
-
+  const unownedNormalCards = cards.filter(card => !collection.includes(card.file));
   const roll = Math.random();
 
-  if (roll < 0.05) {
-    return secretCard;
-  }
+  if (roll < 0.05) return secretCard;
 
-  if (roll < 0.75 && unownedNormalCards.length > 0) {
+  if (roll < 0.80 && unownedNormalCards.length > 0) {
     return unownedNormalCards[Math.floor(Math.random() * unownedNormalCards.length)];
   }
 
-  return allCards[Math.floor(Math.random() * allCards.length)];
+  return [...cards, secretCard][Math.floor(Math.random() * (cards.length + 1))];
 }
 
 function showResult() {
@@ -196,7 +187,7 @@ function showResult() {
 
   resultCard.src = `cards/${selectedCard.file}`;
 
-  if (selectedCard.file === "black.png") {
+  if (selectedCard.file === "black.webp") {
     resultTitle.textContent = "シークレット！！";
     resultTitle.classList.add("secret-title");
   } else if (isNew) {
@@ -251,18 +242,18 @@ capsule.addEventListener("click", () => {
 
   setTimeout(() => {
     capsule.classList.add("hidden");
-  }, 600);
+  }, 700);
 
   setTimeout(() => {
     flash.classList.add("hidden");
     gachaPreview.src = `cards/${selectedCard.file}`;
     gachaPreview.classList.remove("hidden");
     gachaStageText.textContent = "でた！！";
-  }, 1500);
+  }, 1700);
 
   setTimeout(() => {
     showResult();
-  }, 3500);
+  }, 3400);
 });
 
 stampOptions.forEach(button => {
