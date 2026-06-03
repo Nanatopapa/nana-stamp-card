@@ -453,6 +453,119 @@ goCollectionFromResult.addEventListener("click", () => {
 
 drawGachaButton.addEventListener("click", drawCard);
 
+const adminMenu = document.getElementById("adminMenu");
+const closeAdminMenu = document.getElementById("closeAdminMenu");
+
+const addTicket1 = document.getElementById("addTicket1");
+const addTicket10 = document.getElementById("addTicket10");
+const resetStampCard = document.getElementById("resetStampCard");
+
+const resetTrainCollection = document.getElementById("resetTrainCollection");
+const resetDinoCollection = document.getElementById("resetDinoCollection");
+const resetSaikyoCollection = document.getElementById("resetSaikyoCollection");
+const resetAll = document.getElementById("resetAll");
+
+let adminTapCount = 0;
+let adminTapTimer = null;
+
+document.querySelector(".stats-box").addEventListener("click", () => {
+  adminTapCount++;
+
+  clearTimeout(adminTapTimer);
+  adminTapTimer = setTimeout(() => {
+    adminTapCount = 0;
+  }, 1200);
+
+  if (adminTapCount >= 5) {
+    adminTapCount = 0;
+    adminMenu.classList.remove("hidden");
+  }
+});
+
+closeAdminMenu.addEventListener("click", () => {
+  adminMenu.classList.add("hidden");
+});
+
+addTicket1.addEventListener("click", () => {
+  gachaTickets += 1;
+  saveData();
+  updateDisplay();
+  updateGachaScreen();
+  showMessage("ガチャけん +1！");
+});
+
+addTicket10.addEventListener("click", () => {
+  gachaTickets += 10;
+  saveData();
+  updateDisplay();
+  updateGachaScreen();
+  showMessage("ガチャけん +10！");
+});
+
+resetStampCard.addEventListener("click", () => {
+  if (!confirm("スタンプカードだけリセットする？")) return;
+
+  stampHistory = [];
+  saveData();
+  updateDisplay();
+  showMessage("リセットしたよ！");
+});
+
+resetTrainCollection.addEventListener("click", () => {
+  if (!confirm("新幹線コレクションをリセットする？")) return;
+
+  collections.train = [];
+  saveData();
+  updateGachaScreen();
+  updateCollection();
+  showMessage("新幹線をリセット！");
+});
+
+resetDinoCollection.addEventListener("click", () => {
+  if (!confirm("恐竜コレクションをリセットする？")) return;
+
+  collections.dino = [];
+  saveData();
+  updateGachaScreen();
+  updateCollection();
+  showMessage("恐竜をリセット！");
+});
+
+resetSaikyoCollection.addEventListener("click", () => {
+  if (!confirm("最強王コレクションをリセットする？")) return;
+
+  collections.saikyo = [];
+  saveData();
+  updateGachaScreen();
+  updateCollection();
+  showMessage("最強王をリセット！");
+});
+
+resetAll.addEventListener("click", () => {
+  if (!confirm("全部リセットする？")) return;
+  if (!confirm("本当に全部消すよ？")) return;
+
+  stampHistory = [];
+  gachaTickets = 0;
+  totalStamps = 0;
+  totalTickets = 0;
+
+  collections = {
+    train: [],
+    dino: [],
+    saikyo: []
+  };
+
+  saveData();
+  updateDisplay();
+  updateGachaScreen();
+  updateCollection();
+
+  adminMenu.classList.add("hidden");
+  showMessage("全部リセットしたよ！");
+});
+
+
 updateDisplay();
 updateGachaScreen();
 updateCollection();
