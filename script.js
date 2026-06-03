@@ -40,7 +40,7 @@ const gachaData = {
       { name: "E5はやぶさ", file: "e5.webp" },
       { name: "E6こまち", file: "e6.webp" },
       { name: "E7かがやき", file: "e7.webp" },
-      { name: "H5はやぶさ", file: "H5.webp" },
+      { name: "H5はやぶさ", file: "h5.webp" },
       { name: "ドクターイエロー", file: "doctor.webp" },
       { name: "ひかりレールスター", file: "railstar.webp" },
       { name: "N700Sのぞみ", file: "n700s.webp" },
