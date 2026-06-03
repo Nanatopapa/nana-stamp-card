@@ -517,4 +517,21 @@ button:active {
 .select-button.saikyo {
   background: linear-gradient(180deg, #f59e0b, #d97706);
 }
+/* ===== XR向けUI拡大 ===== */
+
+.stamp-option {
+  font-size: 42px;
+}
+
+.stamp-option span {
+  font-size: 20px;
+}
+
+.select-button {
+  font-size: 42px;
+}
+
+.select-button span {
+  font-size: 22px;
+}
 
