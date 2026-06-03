@@ -3,28 +3,32 @@ let gachaTickets = Number(localStorage.getItem("gachaTickets")) || 0;
 let totalStamps = Number(localStorage.getItem("totalStamps")) || 0;
 let totalTickets = Number(localStorage.getItem("totalTickets")) || 0;
 
-// 旧データ対応：前の collection があれば train に引き継ぐ
 let collections = JSON.parse(localStorage.getItem("collections")) || null;
 if (!collections) {
   const oldCollection = JSON.parse(localStorage.getItem("collection")) || [];
   collections = {
     train: oldCollection,
-    dino: []
+    dino: [],
+    saikyo: []
   };
 }
-if (!collections.train) {
-  collections.train = [];
-}
 
-if (!collections.dino) {
-  collections.dino = [];
-}
+if (!collections.train) collections.train = [];
+if (!collections.dino) collections.dino = [];
+if (!collections.saikyo) collections.saikyo = [];
 
-if (!collections.saikyo) {
-  collections.saikyo = [];
-}
+let cardCounts = JSON.parse(localStorage.getItem("cardCounts")) || {};
+if (!cardCounts.train) cardCounts.train = {};
+if (!cardCounts.dino) cardCounts.dino = {};
+if (!cardCounts.saikyo) cardCounts.saikyo = {};
 
-localStorage.setItem("collections", JSON.stringify(collections));
+["train", "dino", "saikyo"].forEach(type => {
+  collections[type].forEach(file => {
+    if (!cardCounts[type][file]) {
+      cardCounts[type][file] = 1;
+    }
+  });
+});
 
 const gachaData = {
   train: {
@@ -35,7 +39,7 @@ const gachaData = {
     folder: "cards",
     hasSecret: true,
     secretRate: 0.05,
-    unownedRateEnd: 0.75, // 5%シークレット + 70%未所持 = 75%
+    unownedRateEnd: 0.75,
     cards: [
       { name: "E5はやぶさ", file: "e5.webp" },
       { name: "E6こまち", file: "e6.webp" },
@@ -62,7 +66,7 @@ const gachaData = {
     folder: "cards_dino",
     hasSecret: false,
     secretRate: 0,
-    unownedRateEnd: 0.70, // 70%未所持 / 30%全体
+    unownedRateEnd: 0.70,
     cards: [
       { name: "ティラノサウルス", file: "tyranno.webp" },
       { name: "ステゴサウルス", file: "stego.webp" },
@@ -79,7 +83,8 @@ const gachaData = {
     ],
     secretCard: null
   },
- saikyo: {
+
+  saikyo: {
     title: "最強王図鑑<br>ガチャ",
     label: "👑 コレクション",
     collectionTitle: "最強王図鑑<br>コレクション",
@@ -87,7 +92,7 @@ const gachaData = {
     folder: "cards-saikyo",
     hasSecret: true,
     secretRate: 0.05,
-    unownedRateEnd: 0.75, // 5%シークレット + 70%未所持
+    unownedRateEnd: 0.75,
     cards: [
       { name: "ライオン", file: "lion.webp" },
       { name: "キリン", file: "giraffe.webp" },
@@ -168,12 +173,23 @@ const stampOptions = document.querySelectorAll(".stamp-option");
 const gachaSelectButtons = document.querySelectorAll("[data-gacha]");
 const collectionSelectButtons = document.querySelectorAll("[data-collection]");
 
+const adminMenu = document.getElementById("adminMenu");
+const closeAdminMenu = document.getElementById("closeAdminMenu");
+const addTicket1 = document.getElementById("addTicket1");
+const addTicket10 = document.getElementById("addTicket10");
+const resetStampCard = document.getElementById("resetStampCard");
+const resetTrainCollection = document.getElementById("resetTrainCollection");
+const resetDinoCollection = document.getElementById("resetDinoCollection");
+const resetSaikyoCollection = document.getElementById("resetSaikyoCollection");
+const resetAll = document.getElementById("resetAll");
+
 function saveData() {
   localStorage.setItem("stampHistory", JSON.stringify(stampHistory));
   localStorage.setItem("gachaTickets", gachaTickets);
   localStorage.setItem("totalStamps", totalStamps);
   localStorage.setItem("totalTickets", totalTickets);
   localStorage.setItem("collections", JSON.stringify(collections));
+  localStorage.setItem("cardCounts", JSON.stringify(cardCounts));
 }
 
 function showOnly(screen) {
@@ -209,6 +225,15 @@ function getAllCards(type) {
 
 function getCardPath(type, card) {
   return `${gachaData[type].folder}/${card.file}`;
+}
+
+function isSecretCard(type, card) {
+  const data = gachaData[type];
+  return data.secretCard && card.file === data.secretCard.file;
+}
+
+function getCardCount(type, file) {
+  return cardCounts[type][file] || 0;
 }
 
 function updateDisplay() {
@@ -256,7 +281,7 @@ function updateCollection() {
   const allCards = getAllCards(currentCollection);
 
   collectionTitle.innerHTML = data.collectionTitle;
-  updateProgress(currentCollection, collectionProgress, `いまは`);
+  updateProgress(currentCollection, collectionProgress, "いまは");
 
   collectionGrid.innerHTML = "";
 
@@ -270,17 +295,16 @@ function updateCollection() {
 
       const name = document.createElement("div");
       name.classList.add("collection-name");
-      name.textContent = card.name;
+
+      const count = getCardCount(currentCollection, card.file);
+      name.innerHTML = `${card.name}<br>×${count}`;
 
       item.appendChild(img);
       item.appendChild(name);
     } else {
       const locked = document.createElement("div");
       locked.classList.add("locked-card");
-      locked.textContent =  (card.file === "black.webp" || card.file === "mrmoast.webp")
-    ? "SECRET"
-    : "？？？";
-
+      locked.textContent = isSecretCard(currentCollection, card) ? "SECRET" : "？？？";
       item.appendChild(locked);
     }
 
@@ -314,24 +338,28 @@ function showResult() {
     owned.push(selectedCard.file);
   }
 
+  cardCounts[currentGacha][selectedCard.file] =
+    (cardCounts[currentGacha][selectedCard.file] || 0) + 1;
+
+  const count = cardCounts[currentGacha][selectedCard.file];
+
   saveData();
   updateCollection();
 
   resultCard.src = getCardPath(currentGacha, selectedCard);
 
-  if (
-  selectedCard.file === "black.webp" ||
-  selectedCard.file === "mrmoast.webp"
-) {
-  resultTitle.textContent = "シークレット！！";
-  resultTitle.classList.add("secret-title");
-}
-
-    else if (isNew) {
-    resultTitle.textContent = `${selectedCard.name} ゲット！`;
+  if (isSecretCard(currentGacha, selectedCard)) {
+    if (count === 1) {
+      resultTitle.innerHTML = "シークレット！！";
+    } else {
+      resultTitle.innerHTML = `シークレット！！<br>${count}まいめ！`;
+    }
+    resultTitle.classList.add("secret-title");
+  } else if (isNew) {
+    resultTitle.innerHTML = `${selectedCard.name}<br>ゲット！`;
     resultTitle.classList.remove("secret-title");
   } else {
-    resultTitle.textContent = `ダブり！ ${selectedCard.name}`;
+    resultTitle.innerHTML = `${selectedCard.name}<br>${count}まいめ！`;
     resultTitle.classList.remove("secret-title");
   }
 
@@ -458,18 +486,7 @@ goCollectionFromResult.addEventListener("click", () => {
 
 drawGachaButton.addEventListener("click", drawCard);
 
-const adminMenu = document.getElementById("adminMenu");
-const closeAdminMenu = document.getElementById("closeAdminMenu");
-
-const addTicket1 = document.getElementById("addTicket1");
-const addTicket10 = document.getElementById("addTicket10");
-const resetStampCard = document.getElementById("resetStampCard");
-
-const resetTrainCollection = document.getElementById("resetTrainCollection");
-const resetDinoCollection = document.getElementById("resetDinoCollection");
-const resetSaikyoCollection = document.getElementById("resetSaikyoCollection");
-const resetAll = document.getElementById("resetAll");
-
+// 親メニュー
 let adminTapCount = 0;
 let adminTapTimer = null;
 
@@ -520,6 +537,7 @@ resetTrainCollection.addEventListener("click", () => {
   if (!confirm("新幹線コレクションをリセットする？")) return;
 
   collections.train = [];
+  cardCounts.train = {};
   saveData();
   updateGachaScreen();
   updateCollection();
@@ -530,6 +548,7 @@ resetDinoCollection.addEventListener("click", () => {
   if (!confirm("恐竜コレクションをリセットする？")) return;
 
   collections.dino = [];
+  cardCounts.dino = {};
   saveData();
   updateGachaScreen();
   updateCollection();
@@ -540,6 +559,7 @@ resetSaikyoCollection.addEventListener("click", () => {
   if (!confirm("最強王コレクションをリセットする？")) return;
 
   collections.saikyo = [];
+  cardCounts.saikyo = {};
   saveData();
   updateGachaScreen();
   updateCollection();
@@ -561,6 +581,12 @@ resetAll.addEventListener("click", () => {
     saikyo: []
   };
 
+  cardCounts = {
+    train: {},
+    dino: {},
+    saikyo: {}
+  };
+
   saveData();
   updateDisplay();
   updateGachaScreen();
@@ -569,7 +595,6 @@ resetAll.addEventListener("click", () => {
   adminMenu.classList.add("hidden");
   showMessage("全部リセットしたよ！");
 });
-
 
 updateDisplay();
 updateGachaScreen();
