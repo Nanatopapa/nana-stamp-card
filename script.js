@@ -12,6 +12,19 @@ if (!collections) {
     dino: []
   };
 }
+if (!collections.train) {
+  collections.train = [];
+}
+
+if (!collections.dino) {
+  collections.dino = [];
+}
+
+if (!collections.saikyo) {
+  collections.saikyo = [];
+}
+
+localStorage.setItem("collections", JSON.stringify(collections));
 
 const gachaData = {
   train: {
