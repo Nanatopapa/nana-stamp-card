@@ -319,10 +319,15 @@ function showResult() {
 
   resultCard.src = getCardPath(currentGacha, selectedCard);
 
-  if (selectedCard.file === "black.webp") {
-    resultTitle.textContent = "シークレット！！";
-    resultTitle.classList.add("secret-title");
-  } else if (isNew) {
+  if (
+  selectedCard.file === "black.webp" ||
+  selectedCard.file === "mrmoast.webp"
+) {
+  resultTitle.textContent = "シークレット！！";
+  resultTitle.classList.add("secret-title");
+}
+
+    else if (isNew) {
     resultTitle.textContent = `${selectedCard.name} ゲット！`;
     resultTitle.classList.remove("secret-title");
   } else {
