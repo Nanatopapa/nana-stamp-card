@@ -99,7 +99,7 @@ const gachaData = {
       { name: "ヘラクレスオオカブト", file: "hercules.webp" },
       { name: "メガロドン", file: "megalodon.webp" },
       { name: "ダイオウイカ", file: "giantsquid.webp" },
-      { name: "オオワシ", file: "eagle.webp" },
+      { name: "オオギワシ", file: "eagle.webp" },
       { name: "デスストーカー", file: "scorpion.webp" },
       { name: "オオスズメバチ", file: "hornet.webp" },
       { name: "ティラノサウルス", file: "trex.webp" },
