@@ -277,7 +277,10 @@ function updateCollection() {
     } else {
       const locked = document.createElement("div");
       locked.classList.add("locked-card");
-      locked.textContent = card.file === "black.webp" ? "SECRET" : "？？？";
+      locked.textContent =  (card.file === "black.webp" || card.file === "mrmoast.webp")
+    ? "SECRET"
+    : "？？？";
+
       item.appendChild(locked);
     }
 
