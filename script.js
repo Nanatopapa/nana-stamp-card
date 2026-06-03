@@ -65,6 +65,37 @@ const gachaData = {
       { name: "パキケファロサウルス", file: "pachy.webp" }
     ],
     secretCard: null
+  },
+ saikyo: {
+    title: "最強王図鑑<br>ガチャ",
+    label: "👑 コレクション",
+    collectionTitle: "最強王図鑑<br>コレクション",
+    windowImage: "gacha-window_saikyo.webp",
+    folder: "cards-saikyo",
+    hasSecret: true,
+    secretRate: 0.05,
+    unownedRateEnd: 0.75, // 5%シークレット + 70%未所持
+    cards: [
+      { name: "ライオン", file: "lion.webp" },
+      { name: "キリン", file: "giraffe.webp" },
+      { name: "カバ", file: "hippo.webp" },
+      { name: "シロクマ", file: "polarbear.webp" },
+      { name: "ティタノボア", file: "titanoboa.webp" },
+      { name: "インペリアルマンモス", file: "mammoth.webp" },
+      { name: "オニヤンマ", file: "dragonfly.webp" },
+      { name: "ヘラクレスオオカブト", file: "hercules.webp" },
+      { name: "メガロドン", file: "megalodon.webp" },
+      { name: "ダイオウイカ", file: "giantsquid.webp" },
+      { name: "オオワシ", file: "eagle.webp" },
+      { name: "デスストーカー", file: "scorpion.webp" },
+      { name: "オオスズメバチ", file: "hornet.webp" },
+      { name: "ティラノサウルス", file: "trex.webp" },
+      { name: "トリケラトプス", file: "triceratops.webp" },
+      { name: "ステゴサウルス", file: "stego.webp" },
+      { name: "スピノサウルス", file: "spino.webp" },
+      { name: "ケツァルコアトルス", file: "quetzal.webp" }
+    ],
+    secretCard: { name: "ミスターモースト", file: "mrmoast.webp" }
   }
 };
 

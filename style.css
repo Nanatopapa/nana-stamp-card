@@ -514,4 +514,7 @@ button:active {
   background: #6c5ce7 !important;
 }
 
+.select-button.saikyo {
+  background: linear-gradient(180deg, #f59e0b, #d97706);
+}
 
