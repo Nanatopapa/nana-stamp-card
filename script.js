@@ -488,8 +488,6 @@ undoStampHome.addEventListener("click", () => {
 backHomeFromGachaSelect.addEventListener("click", () => showOnly(homeScreen));
 
 
-backHomeFromStamp.addEventListener("click", () => showOnly(homeScreen));
-backHomeFromGachaSelect.addEventListener("click", () => showOnly(homeScreen));
 backGachaSelectFromGacha.addEventListener("click", () => showOnly(gachaSelectScreen));
 backHomeFromCollectionSelect.addEventListener("click", () => showOnly(homeScreen));
 backCollectionSelectFromCollection.addEventListener("click", () => showOnly(collectionSelectScreen));
