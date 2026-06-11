@@ -596,3 +596,6 @@ button:active {
   cursor: pointer;
 }
 
+.select-button.shinkalion {
+  background: linear-gradient(180deg, #38bdf8, #2563eb);
+}

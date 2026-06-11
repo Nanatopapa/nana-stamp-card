@@ -16,13 +16,15 @@ if (!collections) {
 if (!collections.train) collections.train = [];
 if (!collections.dino) collections.dino = [];
 if (!collections.saikyo) collections.saikyo = [];
+if (!collections.shinkalion) collections.shinkalion = [];
 
 let cardCounts = JSON.parse(localStorage.getItem("cardCounts")) || {};
 if (!cardCounts.train) cardCounts.train = {};
 if (!cardCounts.dino) cardCounts.dino = {};
 if (!cardCounts.saikyo) cardCounts.saikyo = {};
+if (!cardCounts.shinkalion) cardCounts.shinkalion = {};
 
-["train", "dino", "saikyo"].forEach(type => {
+["train", "dino", "saikyo", "shinkalion"].forEach(type => {
   collections[type].forEach(file => {
     if (!cardCounts[type][file]) {
       cardCounts[type][file] = 1;
@@ -115,7 +117,35 @@ const gachaData = {
     ],
     secretCard: { name: "ミスターモースト", file: "mrmoast.webp" }
   }
-};
+},
+
+ shinkalion: {
+    title: "シンカリオン<br>ガチャ",
+    label: "🤖 コレクション",
+    collectionTitle: "シンカリオン<br>コレクション",
+    windowImage: "gacha-window_shinkalion.webp",
+    folder: "cards_shinkalion",
+    hasSecret: false,
+    secretRate: 0,
+    unownedRateEnd: 0.75,
+    cards: [
+      { name: "E5はやぶさ", file: "shinkalion_e5.webp" },
+      { name: "E6こまち", file: "shinkalion_e6.webp" },
+      { name: "E7かがやき", file: "shinkalion_e7.webp" },
+      { name: "E3つばさ", file: "shinkalion_e3.webp" },
+      { name: "500こだま", file: "shinkalion_500kodama.webp" },
+      { name: "ドクターイエロー", file: "shinkalion_doctor.webp" },
+      { name: "H5はやぶさ", file: "shinkalion_h5.webp" },
+      { name: "800つばめ", file: "shinkalion_800tsubame.webp" },
+      { name: "N700みずほ", file: "shinkalion_n700mizuho.webp" },
+      { name: "700ひかりレールスター", file: "shinkalion_railstar.webp" },
+      { name: "700のぞみ", file: "shinkalion_700nozomi.webp" },
+      { name: "N700Aのぞみ", file: "shinkalion_n700a.webp" },
+      { name: "ブラックシンカリオン", file: "shinkalion_black.webp" }
+    ],
+    secretCard: null
+  }
+;
 
 let currentGacha = "train";
 let currentCollection = "train";
@@ -599,16 +629,18 @@ resetAll.addEventListener("click", () => {
   totalTickets = 0;
 
   collections = {
-    train: [],
-    dino: [],
-    saikyo: []
-  };
+  train: [],
+  dino: [],
+  saikyo: [],
+  shinkalion: []
+};
 
-  cardCounts = {
-    train: {},
-    dino: {},
-    saikyo: {}
-  };
+cardCounts = {
+  train: {},
+  dino: {},
+  saikyo: {},
+  shinkalion: {}
+};
 
   saveData();
   updateDisplay();
