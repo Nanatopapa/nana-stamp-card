@@ -479,6 +479,10 @@ undoStampHome.addEventListener("click", () => {
 
   stampHistory.pop();
 
+  if (totalStamps > 0) {
+    totalStamps--;
+  }
+
   saveData();
   updateDisplay();
 
