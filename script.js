@@ -144,7 +144,7 @@ const gachaData = {
     ],
     secretCard: null
   }
-;
+};
 
 let currentGacha = "train";
 let currentCollection = "train";
