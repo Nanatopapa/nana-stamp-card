@@ -116,8 +116,7 @@ const gachaData = {
       { name: "ケツァルコアトルス", file: "quetzal.webp" }
     ],
     secretCard: { name: "ミスターモースト", file: "mrmoast.webp" }
-  }
-},
+  },
 
  shinkalion: {
     title: "シンカリオン<br>ガチャ",
