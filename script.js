@@ -184,6 +184,7 @@ const resetSaikyoCollection = document.getElementById("resetSaikyoCollection");
 const resetAll = document.getElementById("resetAll");
 
 const undoStamp = document.getElementById("undoStamp");
+const undoStampHome = document.getElementById("undoStampHome");
 
 function saveData() {
   localStorage.setItem("stampHistory", JSON.stringify(stampHistory));
@@ -470,7 +471,7 @@ goGachaSelectButton.addEventListener("click", () => showOnly(gachaSelectScreen))
 goCollectionSelectButton.addEventListener("click", () => showOnly(collectionSelectScreen));
 backHomeFromStamp.addEventListener("click", () => showOnly(homeScreen));
 
-undoStamp.addEventListener("click", () => {
+undoStampHome.addEventListener("click", () => {
   if (stampHistory.length === 0) {
     showMessage("スタンプがないよ！");
     return;

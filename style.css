@@ -575,4 +575,24 @@ button:active {
 .admin-box .danger {
   background: #e74c3c;
 }
+.undo-button {
+  display: block;
+  margin-left: auto;
+  margin-right: 40px;
+  margin-top: 8px;
+
+  width: 140px;
+  height: 42px;
+
+  border: none;
+  border-radius: 20px;
+
+  background: #f0c95a;
+  color: #555;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
 
