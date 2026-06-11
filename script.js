@@ -183,6 +183,8 @@ const resetDinoCollection = document.getElementById("resetDinoCollection");
 const resetSaikyoCollection = document.getElementById("resetSaikyoCollection");
 const resetAll = document.getElementById("resetAll");
 
+const undoStamp = document.getElementById("undoStamp");
+
 function saveData() {
   localStorage.setItem("stampHistory", JSON.stringify(stampHistory));
   localStorage.setItem("gachaTickets", gachaTickets);
@@ -466,6 +468,24 @@ collectionSelectButtons.forEach(button => {
 goStampButton.addEventListener("click", () => showOnly(stampScreen));
 goGachaSelectButton.addEventListener("click", () => showOnly(gachaSelectScreen));
 goCollectionSelectButton.addEventListener("click", () => showOnly(collectionSelectScreen));
+backHomeFromStamp.addEventListener("click", () => showOnly(homeScreen));
+
+undoStamp.addEventListener("click", () => {
+  if (stampHistory.length === 0) {
+    showMessage("スタンプがないよ！");
+    return;
+  }
+
+  stampHistory.pop();
+
+  saveData();
+  updateDisplay();
+
+  showMessage("ひとつもどしたよ！");
+});
+
+backHomeFromGachaSelect.addEventListener("click", () => showOnly(homeScreen));
+
 
 backHomeFromStamp.addEventListener("click", () => showOnly(homeScreen));
 backHomeFromGachaSelect.addEventListener("click", () => showOnly(homeScreen));
