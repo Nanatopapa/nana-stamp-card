@@ -210,6 +210,7 @@ const resetStampCard = document.getElementById("resetStampCard");
 const resetTrainCollection = document.getElementById("resetTrainCollection");
 const resetDinoCollection = document.getElementById("resetDinoCollection");
 const resetSaikyoCollection = document.getElementById("resetSaikyoCollection");
+const resetShinkalionCollection = document.getElementById("resetShinkalionCollection");
 const resetAll = document.getElementById("resetAll");
 
 const undoStamp = document.getElementById("undoStamp");
@@ -616,6 +617,17 @@ resetSaikyoCollection.addEventListener("click", () => {
   updateGachaScreen();
   updateCollection();
   showMessage("最強王をリセット！");
+});
+
+resetShinkalionCollection.addEventListener("click", () => {
+  if (!confirm("シンカリオンコレクションをリセットする？")) return;
+
+  collections.shinkalion = [];
+  cardCounts.shinkalion = {};
+  saveData();
+  updateGachaScreen();
+  updateCollection();
+  showMessage("シンカリオンをリセット！");
 });
 
 resetAll.addEventListener("click", () => {
